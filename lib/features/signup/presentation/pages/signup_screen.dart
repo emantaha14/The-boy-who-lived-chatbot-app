@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:harry_potter_chat_bot/core/theme/app_text_styles.dart';
 import 'package:harry_potter_chat_bot/core/widgets/custom_button.dart';
 import 'package:harry_potter_chat_bot/features/login/presentation/pages/login_screen.dart';
+import 'package:harry_potter_chat_bot/features/signup/presentation/cubit/signup_cubit.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
@@ -17,7 +19,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -32,7 +34,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 140.h,),
+              SizedBox(
+                height: 140.h,
+              ),
               Text(
                 'SING UP',
                 style: AppTextStyles.cairoWhite(30, FontWeight.bold),
@@ -81,10 +85,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 25.h,
                     ),
                     CustomTFF(
-                      hintText: 'Mobile Number',
+                      hintText: 'Full Name',
                       kbType: TextInputType.text,
                       prefixIcon: const Icon(
-                        Icons.phone,
+                        Icons.drive_file_rename_outline,
                         color: AppColors.mainWhiteColor,
                       ),
                       validate: (phone) {
@@ -93,7 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         }
                         return null;
                       },
-                      controller: _phoneController,
+                      controller: _fullNameController,
                     ),
                     SizedBox(
                       height: 25.h,
@@ -116,17 +120,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
               ),
+              BlocConsumer<SignupCubit, SignupState>(
+                builder: (context, state) {
+                  if (state is SignupError) {
+                    return Center(
+                      child: Text(state.errorMessage),
+                    );
+                  }
+                  return Container();
+                },
+                listener: (context, state) {
+                  if (state is SignupSuccess) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ));
+                  }
+                },
+              ),
               SizedBox(
                 height: 60.h,
               ),
               CustomButton(
                 buttonAction: () {
                   if (_formKey.currentState!.validate()) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LoginScreen(),
-                        ));
+                    context.read<SignupCubit>().signup(
+                        _userNameController.text,
+                        _passController.text,
+                        _fullNameController.text,
+                        _emailController.text);
                   }
                 },
                 buttonText: 'SIGN UP',
