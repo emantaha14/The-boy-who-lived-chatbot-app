@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             create: (context) => SignupCubit(signupUseCase: sl()),
           ),
         ],
-        child: MaterialApp(
+        child: const MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           home: LoginScreen(),

@@ -30,8 +30,8 @@ class _CustomTFFState extends State<CustomTFF> {
 
   @override
   Widget build(BuildContext context) {
-    var borderSide =  BorderSide(
-      color: Colors.grey[900]?? AppColors.mainGreyColor,
+    var borderSide =  const BorderSide(
+      color: Colors.white,
       width: 1,
     );
     return TextFormField(
@@ -54,7 +54,7 @@ class _CustomTFFState extends State<CustomTFF> {
           : false,
       obscuringCharacter: '●',
       enabled: true,
-      style: AppTextStyles.cairoWhite(15, FontWeight.w500),
+      style: AppTextStyles.cairoBlack(15, FontWeight.w500),
       textAlignVertical: TextAlignVertical.center,
       cursorColor: AppColors.secondaryGreenColor,
       controller: widget.controller,
@@ -65,14 +65,14 @@ class _CustomTFFState extends State<CustomTFF> {
 
       },
       decoration: InputDecoration(
-        fillColor: Colors.grey[900],
+        fillColor: Colors.white,
         filled: true,
         hintFadeDuration: const Duration(milliseconds: 100),
         prefixIcon: widget.prefixIcon,
         suffixIcon: tFFIconPosition(),
         hintText: widget.hintText,
         contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-        hintStyle: AppTextStyles.cairoWhite(16, FontWeight.w400),
+        hintStyle: AppTextStyles.cairoGrey(16, FontWeight.w400),
         errorStyle: AppTextStyles.cairoBlack(14, FontWeight.w400)
             .copyWith(color: Colors.red[700]),
         focusedBorder: OutlineInputBorder(

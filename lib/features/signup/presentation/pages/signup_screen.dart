@@ -26,7 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff0B0B0B),
+      backgroundColor: const Color(0xffE9E6E2),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: SingleChildScrollView(
@@ -39,7 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               Text(
                 'SING UP',
-                style: AppTextStyles.cairoWhite(30, FontWeight.bold),
+                style: AppTextStyles.cairoRed(30, FontWeight.bold),
               ),
               SizedBox(
                 height: 40.h,
@@ -53,7 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       kbType: TextInputType.text,
                       prefixIcon: const Icon(
                         Icons.person,
-                        color: AppColors.mainWhiteColor,
+                        color: AppColors.mainGreyColor,
                       ),
                       validate: (username) {
                         if (username == null || username.isEmpty) {
@@ -71,7 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       kbType: TextInputType.text,
                       prefixIcon: const Icon(
                         Icons.email,
-                        color: AppColors.mainWhiteColor,
+                        color: AppColors.mainGreyColor,
                       ),
                       validate: (email) {
                         if (email == null || email.isEmpty) {
@@ -89,7 +89,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       kbType: TextInputType.text,
                       prefixIcon: const Icon(
                         Icons.drive_file_rename_outline,
-                        color: AppColors.mainWhiteColor,
+                        color: AppColors.mainGreyColor,
                       ),
                       validate: (phone) {
                         if (phone == null || phone.isEmpty) {
@@ -107,7 +107,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       kbType: TextInputType.text,
                       prefixIcon: const Icon(
                         Icons.lock,
-                        color: AppColors.mainWhiteColor,
+                        color: AppColors.mainGreyColor,
                       ),
                       validate: (password) {
                         if (password == null || password.isEmpty) {
@@ -171,7 +171,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                     child: Text(
                       "SIGN IN",
-                      style: AppTextStyles.cairoYellow(16, FontWeight.w500),
+                      style: AppTextStyles.cairoRed(16, FontWeight.w500),
                     ),
                   ),
                 ],

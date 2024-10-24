@@ -10,7 +10,7 @@ import 'package:harry_potter_chat_bot/features/signup/presentation/pages/signup_
 import '../../../../core/app/di.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
-import '../../../home/home_screen.dart';
+import '../../../home/pages/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-        backgroundColor: const Color(0xff0B0B0B),
+      backgroundColor: const Color(0xffE9E6E2),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: SingleChildScrollView(
@@ -41,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Text(
                   'SIGN IN',
-                  style: AppTextStyles.cairoWhite(30, FontWeight.bold),
+                  style: AppTextStyles.cairoRed(30, FontWeight.bold),
                 ),
                 SizedBox(
                   height: 40.h,
@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         kbType: TextInputType.text,
                         prefixIcon: const Icon(
                           Icons.person,
-                          color: AppColors.mainWhiteColor,
+                          color: AppColors.mainGreyColor,
                         ),
                         validate: (username) {
                           if (username == null || username.isEmpty) {
@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         kbType: TextInputType.text,
                         prefixIcon: const Icon(
                           Icons.lock,
-                          color: AppColors.mainWhiteColor,
+                          color: AppColors.mainGreyColor,
                         ),
                         validate: (password) {
                           if (password == null || password.isEmpty) {
@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: Text(
                         "SIGN UP",
-                        style: AppTextStyles.cairoYellow(16, FontWeight.w500),
+                        style: AppTextStyles.cairoRed(16, FontWeight.w500),
                       ),
                     ),
                   ],

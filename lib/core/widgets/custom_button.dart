@@ -66,7 +66,7 @@ class CustomButton extends StatelessWidget {
         elevation: elevation ?? 4.0,
         onPressed: buttonAction,
         padding: EdgeInsets.zero,
-        color: color ?? AppColors.mainYellowColor,
+        color: color ?? AppColors.mainRedColor,
         shape: RoundedRectangleBorder(
           side: BorderSide(
             color: borderColor ?? Colors.transparent,
