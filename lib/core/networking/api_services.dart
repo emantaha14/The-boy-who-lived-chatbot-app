@@ -15,7 +15,7 @@ class ApiServices {
           headers:  {
             "Accept": "application/json",
             "Content-Type": "application/json",
-
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraGFsZWQyNDciLCJleHAiOjE3Mjk3NzY4NDB9.OxiolduHtpy6khlj62-A4DXV6rve5WulB-Ff5DJWQJI"
           }),
     );
     addDioInterceptor();

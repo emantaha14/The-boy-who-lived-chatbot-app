@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:harry_potter_chat_bot/core/app/app_prefs.dart';
 import 'package:harry_potter_chat_bot/core/theme/app_text_styles.dart';
 import 'package:harry_potter_chat_bot/core/widgets/custom_button.dart';
+import 'package:harry_potter_chat_bot/features/all_chats/presentation/pages/chats_screen.dart';
 import 'package:harry_potter_chat_bot/features/login/presentation/cubit/login_cubit.dart';
 import 'package:harry_potter_chat_bot/features/signup/presentation/pages/signup_screen.dart';
 
@@ -109,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const HomeScreen(),
+                            builder: (context) => const ChatsScreen(),
                           ));
                     }
                   },

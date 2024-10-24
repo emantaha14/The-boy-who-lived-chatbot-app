@@ -1,4 +1,8 @@
 import 'package:get_it/get_it.dart';
+import 'package:harry_potter_chat_bot/features/all_chats/data/datasource/chats_datasource.dart';
+import 'package:harry_potter_chat_bot/features/all_chats/data/repo_impl/chats_repo_impl.dart';
+import 'package:harry_potter_chat_bot/features/all_chats/domain/repository/chats_repo.dart';
+import 'package:harry_potter_chat_bot/features/all_chats/domain/usecase/chats_usecase.dart';
 import 'package:harry_potter_chat_bot/features/login/data/datasources/login_datasource.dart';
 import 'package:harry_potter_chat_bot/features/login/data/repo_impl/login_repo_impl.dart';
 import 'package:harry_potter_chat_bot/features/login/domain/repository/login_repo.dart';
@@ -45,5 +49,15 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<SignupDatasource>(
         () => SignupDataSourceImpl(),
+  );
+
+  sl.registerLazySingleton(
+        () => ChatsUseCase(chatsRepo: sl()),
+  );
+  sl.registerLazySingleton<ChatsRepo>(
+        () => ChatsRepoImpl(chatsDataSource: sl(), networkInfo: sl()),
+  );
+  sl.registerLazySingleton<ChatsDataSource>(
+        () => ChatsDataSourceImpl(),
   );
 }
