@@ -4,6 +4,7 @@ import 'package:harry_potter_chat_bot/features/login/domain/entities/login_entit
 import 'package:harry_potter_chat_bot/features/login/domain/usecase/login_usecase.dart';
 
 import '../../../../core/constants/constants.dart';
+import '../../../../core/error_handler/failure.dart';
 
 part 'login_state.dart';
 
@@ -17,7 +18,7 @@ class LoginCubit extends Cubit<LoginState> {
     final loginOrFailure = await loginUseCase.call(username, password);
     loginOrFailure.fold(
       (failure) {
-        emit(LoginError(errorMessage: mapFailureToMessage(failure)));
+        emit(LoginError(failure: failure));
       },
       (loginResponse) {
         emit(LoginSuccess(loginResponse: loginResponse));

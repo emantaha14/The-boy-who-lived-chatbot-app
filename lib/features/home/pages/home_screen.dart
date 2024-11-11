@@ -5,7 +5,9 @@ import 'package:harry_potter_chat_bot/features/home/widgets/appbar_widget.dart';
 import '../../../core/networking/websocket_service.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final String sessionId;
+
+  const HomeScreen({super.key, required this.sessionId});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -28,14 +30,14 @@ class _HomeScreenState extends State<HomeScreen> {
     webSocketService = WebSocketService();
     Map<String, String> headers = {
       'Authorization':
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraGFsZWQyNDciLCJleHAiOjE3Mjk3NzY4NDB9.OxiolduHtpy6khlj62-A4DXV6rve5WulB-Ff5DJWQJI',
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraGFsZWQyNDciLCJleHAiOjE3MzEzNDk4MjN9.7J2l5P2PrPyXE36q08hYG9giK0t-_bpeYm0UL3xN6kQ',
       'Custom-Header': 'value',
     };
 
     webSocketService
         .connect(
-        'ws://20.90.179.54:8000/chats/95b8a4c1-5b9e-483f-ab21-2c34bec031c0/send',
-        headers: headers)
+            'ws://20.90.179.54:8000/chats/${widget.sessionId}/send',
+            headers: headers)
         .then((_) {
       setState(() {
         isLoading = false;
@@ -81,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final receivedMessages =
-    messages.where((message) => message['type'] == 'received').toList();
+        messages.where((message) => message['type'] == 'received').toList();
     return Scaffold(
         backgroundColor: const Color(0xffE9E6E2),
         appBar: const ChatAppBar(),
@@ -95,9 +97,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     final messageData = receivedMessages[index];
                     final decodeMessageData =
-                    jsonDecode(messageData['message']!);
+                        jsonDecode(messageData['message']!);
                     Map<String, dynamic> decodeMessageDataDecoded =
-                    jsonDecode(decodeMessageData);
+                        jsonDecode(decodeMessageData);
                     return LayoutBuilder(
                       builder: (context, constraints) {
                         double maxMessageWidth = constraints.maxWidth / 1.3;
@@ -108,19 +110,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             mainAxisAlignment:
-                            decodeMessageDataDecoded['sender'] == 'SYSTEM'
-                                ? MainAxisAlignment.start
-                                : MainAxisAlignment.end,
+                                decodeMessageDataDecoded['sender'] == 'SYSTEM'
+                                    ? MainAxisAlignment.start
+                                    : MainAxisAlignment.end,
                             children: [
                               decodeMessageDataDecoded['sender'] == 'SYSTEM'
                                   ? ClipOval(
-                                child: Image.network(
-                                  "https://assets-prd.ignimgs.com/2021/01/26/harry-potter-button-1611619333944.jpg",
-                                  width: 38,
-                                  height: 38,
-                                  fit: BoxFit.cover,
-                                ),
-                              )
+                                      child: Image.network(
+                                        "https://assets-prd.ignimgs.com/2021/01/26/harry-potter-button-1611619333944.jpg",
+                                        width: 38,
+                                        height: 38,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
                                   : const SizedBox.shrink(),
                               const SizedBox(
                                 width: 10,
@@ -136,15 +138,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                     topRight: const Radius.circular(30),
                                     topLeft: const Radius.circular(30),
                                     bottomRight:
-                                    decodeMessageDataDecoded['sender'] ==
-                                        'SYSTEM'
-                                        ? const Radius.circular(30)
-                                        : Radius.zero,
+                                        decodeMessageDataDecoded['sender'] ==
+                                                'SYSTEM'
+                                            ? const Radius.circular(30)
+                                            : Radius.zero,
                                     bottomLeft:
-                                    decodeMessageDataDecoded['sender'] ==
-                                        'USER'
-                                        ? const Radius.circular(30)
-                                        : Radius.zero,
+                                        decodeMessageDataDecoded['sender'] ==
+                                                'USER'
+                                            ? const Radius.circular(30)
+                                            : Radius.zero,
                                   ),
                                 ),
                                 child: Text(

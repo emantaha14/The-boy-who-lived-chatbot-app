@@ -12,9 +12,9 @@ final class SignupSuccess extends SignupState {
 }
 
 final class SignupError extends SignupState {
-  final String errorMessage;
+  final Failure failure;
 
-  SignupError({required this.errorMessage});
+  SignupError({required this.failure});
 }
 
 final class SignupLoading extends SignupState {}

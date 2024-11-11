@@ -1,6 +1,6 @@
 import '../error_handler/failures.dart';
 
-String mapFailureToMessage(Failure failure) {
+String mapFailureToMessage(Failures failure) {
   switch (failure.runtimeType) {
     case ServerFailure:
       return "Server Failure";

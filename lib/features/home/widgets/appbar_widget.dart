@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../all_chats/presentation/cubit/chats_cubit.dart';
 
 class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ChatAppBar({super.key});
@@ -20,6 +23,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 onTap: () {
                   Navigator.maybePop(context);
+                  context.read<ChatsCubit>().getAllChats();
                 },
               ),
               const Spacer(),

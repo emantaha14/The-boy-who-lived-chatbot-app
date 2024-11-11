@@ -7,6 +7,10 @@ class ApiServices {
   static void init() {
     dio = Dio(
       BaseOptions(
+          // followRedirects: true,
+          // validateStatus: (status) {
+          //   return status! < 500;
+          // },
           baseUrl: '',
           receiveDataWhenStatusError: true,
           receiveTimeout: const Duration(minutes: 3),
@@ -15,7 +19,7 @@ class ApiServices {
           headers:  {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraGFsZWQyNDciLCJleHAiOjE3Mjk3NzY4NDB9.OxiolduHtpy6khlj62-A4DXV6rve5WulB-Ff5DJWQJI"
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraGFsZWQyNDciLCJleHAiOjE3MzEzNDk4MjN9.7J2l5P2PrPyXE36q08hYG9giK0t-_bpeYm0UL3xN6kQ"
           }),
     );
     addDioInterceptor();

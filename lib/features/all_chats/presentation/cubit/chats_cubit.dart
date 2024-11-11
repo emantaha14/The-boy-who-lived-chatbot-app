@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:harry_potter_chat_bot/core/constants/constants.dart';
+import 'package:harry_potter_chat_bot/core/error_handler/failure.dart';
 import 'package:harry_potter_chat_bot/features/all_chats/domain/usecase/chats_usecase.dart';
 
 import '../../domain/entities/chats_entity.dart';
@@ -17,10 +18,29 @@ class ChatsCubit extends Cubit<ChatsState> {
     final chatsOrFailure = await chatsUseCase.call();
     chatsOrFailure.fold(
       (failure) {
-        emit(ChatsErrorState(errorMessage: mapFailureToMessage(failure)));
+        emit(ChatsErrorState(failure: failure));
       },
       (chatsResponse) {
         emit(ChatsLoadedState(chatsResponse: chatsResponse));
+      },
+    );
+  }
+}
+
+class CreateChatCubit extends Cubit<ChatsState> {
+  final CreateChatUseCase createChatUseCase;
+
+  CreateChatCubit({required this.createChatUseCase}) : super(ChatsInitial());
+
+  void createChat(String chatName) async {
+    emit(ChatsLoadingState());
+    final createChatOrFailure = await createChatUseCase.call(chatName);
+    createChatOrFailure.fold(
+      (failure) {
+        emit(CreateChatsErrorState(failure: failure));
+      },
+      (createChatResponse) {
+        emit(CreateChatSuccessState(createChatResponse: createChatResponse));
       },
     );
   }

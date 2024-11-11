@@ -6,6 +6,10 @@ abstract class ChatsDataSource {
   Future<List<ChatsModel>> getAllChats();
 }
 
+abstract class CreateChatDataSource {
+  Future<ChatsModel> createChat(String chatName);
+}
+
 class ChatsDataSourceImpl implements ChatsDataSource {
   @override
   Future<List<ChatsModel>> getAllChats() async {
@@ -25,6 +29,27 @@ class ChatsDataSourceImpl implements ChatsDataSource {
           .toList();
 
       return chatsResponse;
+    } else {
+      print('nooooooooooooooooooooo responsssssssssssss');
+      throw ServerException();
+    }
+  }
+}
+
+class CreateChatDataSourceImpl implements CreateChatDataSource {
+  @override
+  Future<ChatsModel> createChat(String chatName) async {
+    const baseUrl = "http://20.90.179.54:8000/chats/create";
+    final response = await ApiServices.postData(urll: baseUrl, data: {
+      "name": chatName,
+    });
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print('200000000');
+      print(response.data);
+      final createChatResponse = ChatsModel.fromJson(response.data);
+
+      return createChatResponse;
     } else {
       print('nooooooooooooooooooooo responsssssssssssss');
       throw ServerException();

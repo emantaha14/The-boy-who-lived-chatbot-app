@@ -5,6 +5,7 @@ import 'package:harry_potter_chat_bot/core/theme/app_text_styles.dart';
 import 'package:harry_potter_chat_bot/core/widgets/custom_button.dart';
 import 'package:harry_potter_chat_bot/features/login/presentation/pages/login_screen.dart';
 import 'package:harry_potter_chat_bot/features/signup/presentation/cubit/signup_cubit.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
@@ -120,15 +121,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
               ),
-              BlocConsumer<SignupCubit, SignupState>(
-                builder: (context, state) {
-                  if (state is SignupError) {
-                    return Center(
-                      child: Text(state.errorMessage),
-                    );
-                  }
-                  return Container();
-                },
+              BlocListener<SignupCubit, SignupState>(
+                child: Container(),
                 listener: (context, state) {
                   if (state is SignupSuccess) {
                     Navigator.push(
@@ -136,6 +130,48 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         MaterialPageRoute(
                           builder: (context) => const LoginScreen(),
                         ));
+                  }
+                  else if (state is SignupError){
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Lottie.asset(
+                                'assets/images/owl_error.json',
+                                width: 200,
+                                height: 150,
+                                fit: BoxFit.cover,
+                              ),
+                              const SizedBox(height: 30),
+                              Text(
+                                state.failure.message == 'Invalid Credentials'? 'Invalid email or password!' : '${state.failure.message}!',
+                                style:  TextStyle(color: Colors.red[700], fontSize: 20),
+                              ),
+                              const SizedBox(height: 10),
+                              Align(
+                                alignment: AlignmentDirectional.bottomEnd,
+                                child: Container(
+                                  height: 35,
+                                  width: 70,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      border: Border.all(color:  Colors.black87)),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(); // Close the dialog
+                                    },
+                                    child: const Text('OK', style:  TextStyle(color: Colors.black87),),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
                   }
                 },
               ),

@@ -11,6 +11,7 @@ class CustomTFF extends StatefulWidget {
   final Widget? prefixIcon;
   final TextEditingController? controller;
   final String? Function(String?)? validate;
+  final Color? outlineColor;
   const CustomTFF({
     super.key,
     required this.hintText,
@@ -18,6 +19,7 @@ class CustomTFF extends StatefulWidget {
     this.controller,
     this.validate,
     this.prefixIcon,
+    this.outlineColor,
   });
 
   @override
@@ -30,8 +32,8 @@ class _CustomTFFState extends State<CustomTFF> {
 
   @override
   Widget build(BuildContext context) {
-    var borderSide =  const BorderSide(
-      color: Colors.white,
+    var borderSide =  BorderSide(
+      color:  widget.outlineColor?? Colors.white,
       width: 1,
     );
     return TextFormField(

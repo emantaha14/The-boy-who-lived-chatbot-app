@@ -1,4 +1,5 @@
-class Login {
+
+class Login  {
   String accessToken;
   String tokenType;
 

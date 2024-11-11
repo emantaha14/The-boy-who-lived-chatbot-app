@@ -24,7 +24,7 @@ Future<void> init() async {
   sl.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
 
   sl.registerLazySingleton<AppPrefs>(
-        () => AppPrefs(sl()),
+    () => AppPrefs(sl()),
   );
 
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
@@ -40,24 +40,33 @@ Future<void> init() async {
     () => LoginDataSourceImpl(),
   );
 
-
   sl.registerLazySingleton(
-        () => SignupUseCase(signupRepo: sl()),
+    () => SignupUseCase(signupRepo: sl()),
   );
   sl.registerLazySingleton<SignupRepo>(
-        () => SignupRepoImpl(signupDatasource: sl(), networkInfo: sl()),
+    () => SignupRepoImpl(signupDatasource: sl(), networkInfo: sl()),
   );
   sl.registerLazySingleton<SignupDatasource>(
-        () => SignupDataSourceImpl(),
+    () => SignupDataSourceImpl(),
   );
 
   sl.registerLazySingleton(
-        () => ChatsUseCase(chatsRepo: sl()),
+    () => ChatsUseCase(chatsRepo: sl()),
   );
   sl.registerLazySingleton<ChatsRepo>(
-        () => ChatsRepoImpl(chatsDataSource: sl(), networkInfo: sl()),
+    () => ChatsRepoImpl(chatsDataSource: sl(), networkInfo: sl()),
   );
   sl.registerLazySingleton<ChatsDataSource>(
-        () => ChatsDataSourceImpl(),
+    () => ChatsDataSourceImpl(),
+  );
+
+  sl.registerLazySingleton(
+    () => CreateChatUseCase(createChatRepo: sl()),
+  );
+  sl.registerLazySingleton<CreateChatRepo>(
+    () => CreateChatRepoImpl(createChatDataSource: sl(), networkInfo: sl()),
+  );
+  sl.registerLazySingleton<CreateChatDataSource>(
+    () => CreateChatDataSourceImpl(),
   );
 }

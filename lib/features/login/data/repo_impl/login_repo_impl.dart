@@ -1,10 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:harry_potter_chat_bot/core/error_handler/failures.dart';
+import 'package:harry_potter_chat_bot/core/error_handler/error_handler.dart';
+import 'package:harry_potter_chat_bot/core/error_handler/failure.dart';
 import 'package:harry_potter_chat_bot/features/login/data/datasources/login_datasource.dart';
 import 'package:harry_potter_chat_bot/features/login/domain/entities/login_entitiy.dart';
 import 'package:harry_potter_chat_bot/features/login/domain/repository/login_repo.dart';
-
-import '../../../../core/error_handler/error_exception.dart';
 import '../../../../core/network/network_info.dart';
 
 class LoginRepoImpl implements LoginRepo {
@@ -19,11 +18,11 @@ class LoginRepoImpl implements LoginRepo {
       try {
         final loginResponse = await loginDataSource.login(username, password);
         return Right(loginResponse);
-      } on ServerException {
-        return Left(ServerFailure());
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
       }
     } else {
-      return Left(OfflineFailure());
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
 }
