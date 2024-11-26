@@ -5,7 +5,6 @@ import 'package:harry_potter_chat_bot/core/networking/api_services.dart';
 import 'package:harry_potter_chat_bot/features/all_chats/presentation/cubit/chats_cubit.dart';
 import 'package:harry_potter_chat_bot/features/login/presentation/pages/login_screen.dart';
 import 'package:harry_potter_chat_bot/features/signup/presentation/cubit/signup_cubit.dart';
-import 'package:harry_potter_chat_bot/oop.dart';
 import 'core/app/di.dart' as di;
 import 'core/app/di.dart';
 import 'features/all_chats/presentation/pages/chats_screen.dart';
@@ -17,12 +16,6 @@ void main() async {
   await di.init();
   ApiServices.init();
   runApp(const MyApp());
-
-  Adder add = Adder();
-  add.add(2, 4);
-  MyBook myBook = MyBook();
-  myBook.setTitle('s');
-  myBook.getTitle();
 }
 
 class MyApp extends StatelessWidget {
@@ -49,7 +42,7 @@ class MyApp extends StatelessWidget {
         child: const MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          home: ChatsScreen(),
+          home: LoginScreen(),
         ),
       ),
     );

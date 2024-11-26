@@ -12,4 +12,7 @@ class AppColors {
   static const Color secondaryWhiteColor= Color(0xffFFFBE6);
   static const Color mainYellowColor= Color(0xffE49B0F);
   static const Color mainRedColor= Colors.red;
+  static const Color primaryColor = Color(0xffE9E6E2);
+  static const Color txtFieldFillColor = Color(0xffFAF9F6);
+  static const Color txtFieldBorderColor = Color(0xff2e2d2f);
 }

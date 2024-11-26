@@ -1,8 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import '../app/app_prefs.dart';
+import '../app/di.dart';
+
 class ApiServices {
   static Dio dio = Dio();
+  static final AppPrefs _appPrefs = AppPrefs(sl());
 
   static void init() {
     dio = Dio(
@@ -16,13 +20,24 @@ class ApiServices {
           receiveTimeout: const Duration(minutes: 3),
           connectTimeout: const Duration(minutes: 3),
           sendTimeout: const Duration(minutes: 3),
-          headers:  {
+          headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraGFsZWQyNDciLCJleHAiOjE3MzEzNDk4MjN9.7J2l5P2PrPyXE36q08hYG9giK0t-_bpeYm0UL3xN6kQ"
           }),
     );
     addDioInterceptor();
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          final token = _appPrefs.getToken();
+          options.headers['Authorization'] = 'Bearer $token';
+          return handler.next(options);
+        },
+        onError: (DioException e, handler) async {
+          return handler.next(e);
+        },
+      ),
+    );
   }
 
   static void addDioInterceptor() {
@@ -43,6 +58,7 @@ class ApiServices {
   }) async {
     return await dio.get(urll, queryParameters: queries, data: data);
   }
+
   ////////////////////////////////////////////////////////
 
   static Future<Response> postData({
