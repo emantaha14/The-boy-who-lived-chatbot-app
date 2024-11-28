@@ -7,7 +7,6 @@ import 'package:harry_potter_chat_bot/features/login/presentation/pages/login_sc
 import 'package:harry_potter_chat_bot/features/signup/presentation/cubit/signup_cubit.dart';
 import 'core/app/di.dart' as di;
 import 'core/app/di.dart';
-import 'features/all_chats/presentation/pages/chats_screen.dart';
 import 'features/login/presentation/cubit/login_cubit.dart';
 
 void main() async {

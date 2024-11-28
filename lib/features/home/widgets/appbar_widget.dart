@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../all_chats/presentation/cubit/chats_cubit.dart';
 
 class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const ChatAppBar({super.key});
+  final int selectedIndex;
+  const ChatAppBar({super.key, required this.selectedIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +25,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                 onTap: () {
                   Navigator.maybePop(context);
                   context.read<ChatsCubit>().getAllChats();
+                  context.read<ChatsCubit>().changeSelectedIndex(selectedIndex);
                 },
               ),
               const Spacer(),

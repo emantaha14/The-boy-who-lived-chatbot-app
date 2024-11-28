@@ -17,6 +17,12 @@ final class ChatsErrorState extends ChatsState {
   ChatsErrorState({required this.failure});
 }
 
+class ChatsIndexChangedState extends ChatsState {
+  final int selectedIndex;
+
+  ChatsIndexChangedState({required this.selectedIndex});
+}
+
 final class ChatsLoadingState extends ChatsState {}
 
 final class CreateChatSuccessState extends ChatsState {

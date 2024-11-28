@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:harry_potter_chat_bot/core/constants/constants.dart';
 import 'package:harry_potter_chat_bot/core/error_handler/failure.dart';
 import 'package:harry_potter_chat_bot/features/all_chats/domain/usecase/chats_usecase.dart';
 
@@ -25,6 +24,17 @@ class ChatsCubit extends Cubit<ChatsState> {
       },
     );
   }
+
+  int _selectedIndex = -1;
+
+  void changeSelectedIndex(int index) {
+    _selectedIndex = index;
+    emit(ChatsIndexChangedState(
+      selectedIndex: _selectedIndex,
+    ));
+  }
+
+  int get selectedIndex => _selectedIndex;
 }
 
 class CreateChatCubit extends Cubit<ChatsState> {

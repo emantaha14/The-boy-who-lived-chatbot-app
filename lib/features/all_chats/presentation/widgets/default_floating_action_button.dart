@@ -28,7 +28,7 @@ class DefaultFloatingActionButton extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => HomeScreen(
-                            sessionId: state.createChatResponse.sessionId),
+                            sessionId: state.createChatResponse.sessionId, selectedIndex: 0,),
                       ));
                 } else if (state is CreateChatsErrorState) {
                   Navigator.pop(context);

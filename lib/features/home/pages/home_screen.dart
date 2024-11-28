@@ -12,8 +12,10 @@ import '../widgets/chat_bot_messages.dart';
 
 class HomeScreen extends StatefulWidget {
   final String sessionId;
+  final int selectedIndex;
 
-  const HomeScreen({super.key, required this.sessionId});
+  const HomeScreen(
+      {super.key, required this.sessionId, required this.selectedIndex});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -26,11 +28,12 @@ class _HomeScreenState extends State<HomeScreen> {
   static final AppPrefs _appPrefs = AppPrefs(sl());
   List<Map<String, String>> messages = [];
   bool isLoading = true;
+  bool isTyping = false;
 
   _scrollToBottom() {
     scrollController.animateTo(
       scrollController.position.maxScrollExtent,
-      duration: const Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
     );
   }
@@ -61,8 +64,14 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() {
           messages.add({"message": data, "type": "received"});
           _scrollToBottom();
-        });
-      });
+          isTyping = true;
+        },
+        );
+        print('message arrived ==========================');
+      },
+      onDone: () {
+          print('message arrived ==========================');
+      },);
     });
   }
 
@@ -93,7 +102,9 @@ class _HomeScreenState extends State<HomeScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
     return Scaffold(
         backgroundColor: AppColors.primaryColor,
-        appBar: const ChatAppBar(),
+        appBar: ChatAppBar(
+          selectedIndex: widget.selectedIndex,
+        ),
         body: Column(
           children: [
             Expanded(

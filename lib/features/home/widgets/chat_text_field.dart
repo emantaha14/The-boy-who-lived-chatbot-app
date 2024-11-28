@@ -12,53 +12,60 @@ class ChatTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SizedBox(
-          width: 370.w,
-          child: TextField(
-            controller: messageController,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: AppColors.txtFieldFillColor,
-              hintText: 'Type your message...',
-              hintStyle: const TextStyle(color: Colors.grey),
-              contentPadding: EdgeInsets.symmetric(
-                vertical: 20.h,
-                horizontal: 20.0.w,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide:
-                    BorderSide(color: Colors.grey[400] ?? Colors.transparent),
-                borderRadius: BorderRadius.circular(50.r),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  color: AppColors.txtFieldBorderColor,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+      child: Stack(
+        children: [
+          SizedBox(
+            width: 370.w,
+            child: TextField(
+              controller: messageController,
+              maxLines: 4,
+              minLines: 1,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: AppColors.txtFieldFillColor,
+                hintText: 'Type your message...',
+                hintStyle: const TextStyle(color: Colors.grey),
+                contentPadding: EdgeInsets.only(
+                  top: 15.h,
+                  bottom: 15.h,
+                  right: 60.0.w,
+                  left: 20.w
                 ),
-                borderRadius: BorderRadius.circular(50.r),
+                enabledBorder: OutlineInputBorder(
+                  borderSide:
+                  BorderSide(color: Colors.grey[400] ?? Colors.transparent),
+                  borderRadius: BorderRadius.circular(50.r),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    color: AppColors.txtFieldBorderColor,
+                  ),
+                  borderRadius: BorderRadius.circular(50.r),
+                ),
               ),
             ),
           ),
-        ),
-        Positioned(
-          bottom: 0,
-          top: 0,
-          right: 15,
-          child: InkWell(
-            onTap: sendMessage,
-            child: CircleAvatar(
-              radius: 24.r,
-              backgroundColor: AppColors.mainRedColor,
-              child: Image.asset(
-                AppImages.sendImage,
-                color: Colors.white,
-                width: 20.w,
+          Positioned(
+            bottom: 0,
+            top: 0,
+            right: 10,
+            child: InkWell(
+              onTap: sendMessage,
+              child: CircleAvatar(
+                radius: 24.r,
+                backgroundColor: AppColors.mainRedColor,
+                child: Image.asset(
+                  AppImages.sendImage,
+                  color: Colors.white,
+                  width: 20.w,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
