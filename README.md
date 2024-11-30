@@ -19,4 +19,4 @@ Interactive UI: Intuitive and immersive UI/UX with Harry Potter-inspired designs
 Error Handling: Smooth error management for login failures or invalid inputs.
 Accessibility: User-friendly for all, with voice support for accessibility.
 
-https://github.com/khaledelhady44/The-boy-who-lived/raw/main/images/harry.jpg
+![Image Description]([https://image-link.com](https://static1.srcdn.com/wordpress/wp-content/uploads/2019/07/Best-Friends-Emma-Watson-as-Hermione-Daniel-Radcliffe-as-Harry-and-Rupert-Grint-as-Ron-in-Harry-Potter-Cropped-1.jpg?q=50&fit=crop&w=1140&h=&dpr=1.5))
