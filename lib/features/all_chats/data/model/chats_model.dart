@@ -9,7 +9,6 @@ class ChatsModel extends Chats {
       required super.sessionId,
       required super.userId});
 
-
   factory ChatsModel.fromJson(Map<String, dynamic> json) => ChatsModel(
         name: json["name"],
         createdAt: DateTime.parse(json["created_at"]),

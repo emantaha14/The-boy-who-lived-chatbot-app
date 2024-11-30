@@ -14,12 +14,9 @@ class LoginDataSourceImpl implements LoginDataSource {
         urll: baseUrl, data: {"username": username, "password": password});
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print('200000000');
-      print(response.data);
       final loginResponse = LoginResponseModel.fromJson(response.data);
       return loginResponse;
     } else {
-      print('nooooooooooooooooooooo responsssssssssssss');
       throw ServerException();
     }
   }

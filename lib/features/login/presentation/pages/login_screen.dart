@@ -8,6 +8,7 @@ import 'package:harry_potter_chat_bot/features/login/presentation/cubit/login_cu
 import 'package:harry_potter_chat_bot/features/login/presentation/widgets/login_bloc_consumer.dart';
 import 'package:harry_potter_chat_bot/features/login/presentation/widgets/register_title.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/widgets/background_image.dart';
 import '../widgets/have_no_account_row.dart';
 import '../widgets/login_text_fields.dart';
 
@@ -26,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: SingleChildScrollView(
@@ -34,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              DefaultSizedBox.vertical(150.h),
+              DefaultSizedBox.vertical(120.h),
               const RegisterTitle(txt: 'SIGN IN'),
               DefaultSizedBox.vertical(40.h),
               Form(
@@ -45,8 +46,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               LoginBlocConsumer(),
-              DefaultSizedBox.vertical(60.h),
+              DefaultSizedBox.vertical(50.h),
               CustomButton(
+                color: AppColors.primaryColor,
                 buttonAction: () {
                   if (_formKey.currentState!.validate()) {
                     context
@@ -55,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                 },
                 buttonText: 'SIGN IN',
-                buttonStyle: AppTextStyles.cairoWhite(18.sp, FontWeight.w600),
+                buttonStyle: AppTextStyles.cairoWhite(20.sp, FontWeight.w600),
               ),
               DefaultSizedBox.vertical(20.h),
               const HaveNoAccountRow(),

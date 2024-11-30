@@ -4,9 +4,6 @@ import 'package:harry_potter_chat_bot/core/error_handler/failure.dart';
 import 'package:harry_potter_chat_bot/features/all_chats/data/datasource/chats_datasource.dart';
 import 'package:harry_potter_chat_bot/features/all_chats/domain/entities/chats_entity.dart';
 import 'package:harry_potter_chat_bot/features/all_chats/domain/repository/chats_repo.dart';
-
-import '../../../../core/error_handler/error_exception.dart';
-import '../../../../core/error_handler/failures.dart';
 import '../../../../core/network/network_info.dart';
 
 class ChatsRepoImpl implements ChatsRepo {

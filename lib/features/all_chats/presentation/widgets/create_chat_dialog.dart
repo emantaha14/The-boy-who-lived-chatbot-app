@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:harry_potter_chat_bot/core/widgets/default_sized_box.dart';
-
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
@@ -12,13 +11,16 @@ class CreateChatDialog extends StatelessWidget {
   final TextEditingController chatController;
 
   const CreateChatDialog(
-      {super.key, required this.formChatKey, required this.onPressed, required this.chatController});
+      {super.key,
+      required this.formChatKey,
+      required this.onPressed,
+      required this.chatController});
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      backgroundColor: AppColors.primaryColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
+      backgroundColor: Colors.white,
       child: Container(
         padding: const EdgeInsets.all(16.0),
         width: 300.w,
@@ -33,7 +35,7 @@ class CreateChatDialog extends StatelessWidget {
               style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.mainRedColor),
+                  color: AppColors.primaryColor),
             ),
             DefaultSizedBox.vertical(16.h),
 
@@ -52,32 +54,32 @@ class CreateChatDialog extends StatelessWidget {
                 },
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24.h),
 
             // Close Button
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 CustomButton(
-                  width: 50,
-                  height: 30,
+                  width: 50.w,
+                  height: 30.h,
                   buttonAction: onPressed,
                   buttonText: 'Done',
-                  buttonStyle: const TextStyle(color: AppColors.mainRedColor),
+                  buttonStyle: const TextStyle(color: AppColors.primaryColor),
                   color: Colors.white,
                 ),
                 SizedBox(
                   width: 10.w,
                 ),
                 CustomButton(
-                  width: 50,
-                  height: 30,
+                  width: 50.w,
+                  height: 30.h,
                   buttonAction: () {
-                    Navigator.of(context).pop();
+                    Navigator.of(context).maybePop();
                   },
                   buttonText: 'Close',
                   buttonStyle: const TextStyle(color: AppColors.mainWhiteColor),
-                  color: Colors.red,
+                  color: AppColors.primaryColor,
                 ),
               ],
             ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:harry_potter_chat_bot/core/theme/app_images.dart';
 import 'package:lottie/lottie.dart';
-
+import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/default_sized_box.dart';
 
 class ErrorStateWidget extends StatelessWidget {
@@ -18,7 +19,7 @@ class ErrorStateWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Lottie.asset(
-            'assets/images/owl_error.json',
+            AppImages.errorImage,
             width: 200,
             height: 150,
             fit: BoxFit.cover,
@@ -28,20 +29,21 @@ class ErrorStateWidget extends StatelessWidget {
             errorText == 'Invalid Credentials'
                 ? 'Invalid email or password!'
                 : '$errorText!',
-            style: TextStyle(color: Colors.red[700], fontSize: 20),
+            style: const TextStyle(color: AppColors.primaryColor, fontSize: 20),
           ),
           DefaultSizedBox.vertical(10.h),
           Container(
-            height: 35,
-            width: 70,
+            height: 35.h,
+            width: 90.w,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+              color: AppColors.primaryColor,
+                borderRadius: BorderRadius.circular(30.r),
                 border: Border.all(color: Colors.black87)),
             child: TextButton(
               onPressed: onPressed,
               child: const Text(
                 'Retry',
-                style: TextStyle(color: Colors.black87),
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ),

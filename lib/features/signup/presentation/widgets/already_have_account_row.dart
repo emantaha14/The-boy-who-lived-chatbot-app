@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/app_text_styles.dart';
 
 class AlreadyHaveAccountRow extends StatelessWidget {
@@ -12,7 +12,7 @@ class AlreadyHaveAccountRow extends StatelessWidget {
       children: [
         Text(
           "Already have an account?  ",
-          style: AppTextStyles.cairoGrey(14, FontWeight.w400),
+          style: AppTextStyles.cairoGrey(14.sp, FontWeight.w500),
         ),
         GestureDetector(
           onTap: () {
@@ -20,7 +20,7 @@ class AlreadyHaveAccountRow extends StatelessWidget {
           },
           child: Text(
             "SIGN IN",
-            style: AppTextStyles.cairoRed(16, FontWeight.w500),
+            style: AppTextStyles.cairoBlue(15.sp, FontWeight.bold),
           ),
         ),
       ],

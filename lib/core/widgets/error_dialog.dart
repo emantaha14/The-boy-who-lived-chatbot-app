@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:harry_potter_chat_bot/core/widgets/default_sized_box.dart';
 import 'package:lottie/lottie.dart';
 
+import '../theme/app_colors.dart';
+
 class ErrorDialog extends StatelessWidget {
   final String errorMessage;
 
@@ -35,14 +37,14 @@ class ErrorDialog extends StatelessWidget {
               width: 70,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color: Colors.black87)),
+                  border: Border.all(color: AppColors.primaryColor)),
               child: TextButton(
                 onPressed: () {
                   Navigator.of(context).pop(); // Close the dialog
                 },
                 child: const Text(
                   'OK',
-                  style: TextStyle(color: Colors.black87),
+                  style: TextStyle(color: AppColors.primaryColor),
                 ),
               ),
             ),

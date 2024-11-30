@@ -28,7 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: SingleChildScrollView(
@@ -36,8 +36,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              DefaultSizedBox.vertical(140.h),
-              const RegisterTitle(txt: 'SING UP'),
+              DefaultSizedBox.vertical(120.h),
+              const RegisterTitle(txt: 'SIGN UP'),
               DefaultSizedBox.vertical(40.h),
               Form(
                 key: _formKey,
@@ -48,7 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     passController: passController),
               ),
               const SignupBlocListener(),
-              DefaultSizedBox.vertical(60.h),
+              DefaultSizedBox.vertical(40.h),
               CustomButton(
                 buttonAction: () {
                   if (_formKey.currentState!.validate()) {
@@ -60,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   }
                 },
                 buttonText: 'SIGN UP',
-                buttonStyle: AppTextStyles.cairoWhite(18.sp, FontWeight.w600),
+                buttonStyle: AppTextStyles.cairoWhite(20.sp, FontWeight.w600),
               ),
               DefaultSizedBox.vertical(20.h),
               const AlreadyHaveAccountRow(),

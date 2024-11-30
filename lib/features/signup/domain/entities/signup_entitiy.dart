@@ -10,5 +10,4 @@ class Signup {
     required this.fullName,
     required this.password,
   });
-
 }

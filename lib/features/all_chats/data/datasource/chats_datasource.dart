@@ -19,8 +19,6 @@ class ChatsDataSourceImpl implements ChatsDataSource {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print('200000000');
-      print(response.data);
       List<dynamic> chats = response.data;
       final chatsResponse = chats
           .map(
@@ -30,7 +28,6 @@ class ChatsDataSourceImpl implements ChatsDataSource {
 
       return chatsResponse;
     } else {
-      print('nooooooooooooooooooooo responsssssssssssss');
       throw ServerException();
     }
   }
@@ -45,13 +42,10 @@ class CreateChatDataSourceImpl implements CreateChatDataSource {
     });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print('200000000');
-      print(response.data);
       final createChatResponse = ChatsModel.fromJson(response.data);
 
       return createChatResponse;
     } else {
-      print('nooooooooooooooooooooo responsssssssssssss');
       throw ServerException();
     }
   }

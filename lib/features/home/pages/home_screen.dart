@@ -8,6 +8,7 @@ import 'package:harry_potter_chat_bot/features/home/widgets/appbar_widget.dart';
 import 'package:harry_potter_chat_bot/features/home/widgets/chat_text_field.dart';
 import '../../../core/app/di.dart';
 import '../../../core/networking/websocket_service.dart';
+import '../../../core/widgets/background_image.dart';
 import '../widgets/chat_bot_messages.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -42,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Color(0xff262527),
+      statusBarColor: AppColors.statusBarColor,
       statusBarIconBrightness: Brightness.light,
     ));
     webSocketService = WebSocketService();
@@ -60,18 +61,17 @@ class _HomeScreenState extends State<HomeScreen> {
         isLoading = false;
       });
 
-      webSocketService.getMessages()?.listen((data) {
-        setState(() {
-          messages.add({"message": data, "type": "received"});
-          _scrollToBottom();
-          isTyping = true;
+      webSocketService.getMessages()?.listen(
+        (data) {
+          setState(
+            () {
+              messages.add({"message": data, "type": "received"});
+              _scrollToBottom();
+              isTyping = true;
+            },
+          );
         },
-        );
-        print('message arrived ==========================');
-      },
-      onDone: () {
-          print('message arrived ==========================');
-      },);
+      );
     });
   }
 
@@ -100,27 +100,31 @@ class _HomeScreenState extends State<HomeScreen> {
     final receivedMessages =
         messages.where((message) => message['type'] == 'received').toList();
     WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
-    return Scaffold(
-        backgroundColor: AppColors.primaryColor,
-        appBar: ChatAppBar(
-          selectedIndex: widget.selectedIndex,
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-                  child: ChatBotMessages(
-                    scrollController: scrollController,
-                    receivedMessages: receivedMessages,
-                  )),
+    return Stack(
+      children: [
+        const BackgroundImage(),
+        Scaffold(
+            appBar: ChatAppBar(
+              selectedIndex: widget.selectedIndex,
             ),
-            ChatTextField(
-              sendMessage: sendMessage,
-              messageController: messageController,
-            ),
-            DefaultSizedBox.vertical(20.h),
-          ],
-        ));
+            body: Column(
+              children: [
+                Expanded(
+                  child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+                      child: ChatBotMessages(
+                        scrollController: scrollController,
+                        receivedMessages: receivedMessages,
+                      )),
+                ),
+                ChatTextField(
+                  sendMessage: sendMessage,
+                  messageController: messageController,
+                ),
+                DefaultSizedBox.vertical(20.h),
+              ],
+            )),
+      ],
+    );
   }
 }

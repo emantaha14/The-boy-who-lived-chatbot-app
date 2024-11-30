@@ -16,6 +16,7 @@ class CustomButton extends StatelessWidget {
     this.elevation,
     this.widget,
   });
+
   factory CustomButton.notFilled({
     String? buttonText,
     required void Function() buttonAction,
@@ -40,6 +41,7 @@ class CustomButton extends StatelessWidget {
       widget: widget,
     );
   }
+
   final String? buttonText;
   final TextStyle? buttonStyle;
   final void Function() buttonAction;
@@ -66,7 +68,7 @@ class CustomButton extends StatelessWidget {
         elevation: elevation ?? 4.0,
         onPressed: buttonAction,
         padding: EdgeInsets.zero,
-        color: color ?? AppColors.mainRedColor,
+        color: color ?? AppColors.primaryColor,
         shape: RoundedRectangleBorder(
           side: BorderSide(
             color: borderColor ?? Colors.transparent,

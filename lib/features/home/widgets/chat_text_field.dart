@@ -13,7 +13,7 @@ class ChatTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+      padding: EdgeInsets.symmetric(horizontal: 14.0.w),
       child: Stack(
         children: [
           SizedBox(
@@ -24,23 +24,18 @@ class ChatTextField extends StatelessWidget {
               minLines: 1,
               decoration: InputDecoration(
                 filled: true,
-                fillColor: AppColors.txtFieldFillColor,
+                fillColor: Colors.white,
                 hintText: 'Type your message...',
                 hintStyle: const TextStyle(color: Colors.grey),
                 contentPadding: EdgeInsets.only(
-                  top: 15.h,
-                  bottom: 15.h,
-                  right: 60.0.w,
-                  left: 20.w
-                ),
+                    top: 15.h, bottom: 15.h, right: 60.0.w, left: 20.w),
                 enabledBorder: OutlineInputBorder(
-                  borderSide:
-                  BorderSide(color: Colors.grey[400] ?? Colors.transparent),
+                  borderSide: const BorderSide(color: AppColors.primaryColor),
                   borderRadius: BorderRadius.circular(50.r),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: const BorderSide(
-                    color: AppColors.txtFieldBorderColor,
+                    color: AppColors.primaryColor,
                   ),
                   borderRadius: BorderRadius.circular(50.r),
                 ),
@@ -50,12 +45,12 @@ class ChatTextField extends StatelessWidget {
           Positioned(
             bottom: 0,
             top: 0,
-            right: 10,
+            right: 10.w,
             child: InkWell(
               onTap: sendMessage,
               child: CircleAvatar(
                 radius: 24.r,
-                backgroundColor: AppColors.mainRedColor,
+                backgroundColor: AppColors.primaryColor,
                 child: Image.asset(
                   AppImages.sendImage,
                   color: Colors.white,

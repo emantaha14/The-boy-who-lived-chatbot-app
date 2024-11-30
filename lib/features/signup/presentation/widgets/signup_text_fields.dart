@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:harry_potter_chat_bot/core/widgets/default_sized_box.dart';
-
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 
@@ -37,7 +36,7 @@ class SignupTextFields extends StatelessWidget {
           },
           controller: userNameController,
         ),
-        DefaultSizedBox.vertical(25.h),
+        DefaultSizedBox.vertical(15.h),
         CustomTFF(
           hintText: 'Email',
           kbType: TextInputType.text,
@@ -53,7 +52,7 @@ class SignupTextFields extends StatelessWidget {
           },
           controller: emailController,
         ),
-        DefaultSizedBox.vertical(25.h),
+        DefaultSizedBox.vertical(15.h),
         CustomTFF(
           hintText: 'Full Name',
           kbType: TextInputType.text,
@@ -69,7 +68,7 @@ class SignupTextFields extends StatelessWidget {
           },
           controller: fullNameController,
         ),
-        DefaultSizedBox.vertical(25.h),
+        DefaultSizedBox.vertical(15.h),
         CustomTFF(
           hintText: 'Password',
           kbType: TextInputType.text,

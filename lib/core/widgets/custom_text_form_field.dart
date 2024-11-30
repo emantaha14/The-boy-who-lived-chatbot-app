@@ -12,6 +12,7 @@ class CustomTFF extends StatefulWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validate;
   final Color? outlineColor;
+
   const CustomTFF({
     super.key,
     required this.hintText,
@@ -32,8 +33,8 @@ class _CustomTFFState extends State<CustomTFF> {
 
   @override
   Widget build(BuildContext context) {
-    var borderSide =  BorderSide(
-      color:  widget.outlineColor?? Colors.white,
+    var borderSide = const BorderSide(
+      color:  AppColors.primaryColor,
       width: 1,
     );
     return TextFormField(
@@ -58,13 +59,12 @@ class _CustomTFFState extends State<CustomTFF> {
       enabled: true,
       style: AppTextStyles.cairoBlack(15, FontWeight.w500),
       textAlignVertical: TextAlignVertical.center,
-      cursorColor: AppColors.secondaryGreenColor,
+      cursorColor: AppColors.primaryColor,
       controller: widget.controller,
       onChanged: (value) {
         setState(() {
           content = value;
         });
-
       },
       decoration: InputDecoration(
         fillColor: Colors.white,
@@ -91,7 +91,7 @@ class _CustomTFFState extends State<CustomTFF> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.r),
-          borderSide: borderSide,
+          borderSide: borderSide.copyWith(color: Colors.grey),
         ),
       ),
     );

@@ -14,5 +14,4 @@ class Chats {
     required this.sessionId,
     required this.userId,
   });
-
 }

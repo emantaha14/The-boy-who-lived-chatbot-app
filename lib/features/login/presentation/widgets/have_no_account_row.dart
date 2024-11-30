@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:harry_potter_chat_bot/core/routing/app_routes.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../signup/presentation/pages/signup_screen.dart';
 
 class HaveNoAccountRow extends StatelessWidget {
   const HaveNoAccountRow({super.key});
@@ -13,19 +13,15 @@ class HaveNoAccountRow extends StatelessWidget {
       children: [
         Text(
           "Don't have an account?  ",
-          style: AppTextStyles.cairoGrey(14, FontWeight.w400),
+          style: AppTextStyles.cairoGrey(14.sp, FontWeight.w400),
         ),
         GestureDetector(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SignUpScreen(),
-                ));
+            Navigator.pushNamed(context, Routes.signupRoute);
           },
           child: Text(
             "SIGN UP",
-            style: AppTextStyles.cairoRed(16, FontWeight.w500),
+            style: AppTextStyles.cairoBlue(15.sp, FontWeight.bold),
           ),
         ),
       ],

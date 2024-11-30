@@ -3,11 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:harry_potter_chat_bot/core/networking/api_services.dart';
 import 'package:harry_potter_chat_bot/features/all_chats/presentation/cubit/chats_cubit.dart';
-import 'package:harry_potter_chat_bot/features/login/presentation/pages/login_screen.dart';
-import 'package:harry_potter_chat_bot/features/signup/presentation/cubit/signup_cubit.dart';
 import 'core/app/di.dart' as di;
 import 'core/app/di.dart';
-import 'features/login/presentation/cubit/login_cubit.dart';
+import 'core/routing/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,14 +21,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
+      designSize: const Size(390, 609),
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (context) => LoginCubit(loginUseCase: sl()),
-          ),
-          BlocProvider(
-            create: (context) => SignupCubit(signupUseCase: sl()),
-          ),
           BlocProvider(
             create: (context) => ChatsCubit(chatsUseCase: sl())..getAllChats(),
           ),
@@ -38,13 +31,16 @@ class MyApp extends StatelessWidget {
             create: (context) => CreateChatCubit(createChatUseCase: sl()),
           )
         ],
-        child: const MaterialApp(
+        child: MaterialApp(
           debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            scaffoldBackgroundColor: Colors.transparent,
+          ),
           title: 'Flutter Demo',
-          home: LoginScreen(),
+          initialRoute: Routes.loginRoute,
+          onGenerateRoute: RouteGenerator.getRoute,
         ),
       ),
     );
   }
 }
-

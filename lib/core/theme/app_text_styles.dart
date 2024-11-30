@@ -48,9 +48,9 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle cairoRed(double fontSize, FontWeight fontWeight) {
+  static TextStyle cairoBlue(double fontSize, FontWeight fontWeight) {
     return setCairoTextStyle(
-      color: AppColors.mainRedColor,
+      color: AppColors.primaryColor,
       fontSize: fontSize,
       fontWeight: fontWeight,
     );

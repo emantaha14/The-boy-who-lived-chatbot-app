@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../all_chats/presentation/cubit/chats_cubit.dart';
 
 class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   final int selectedIndex;
+
   const ChatAppBar({super.key, required this.selectedIndex});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
+      color: AppColors.primaryColor,
       child: Padding(
-        padding: const EdgeInsets.only(top: 23),
+        padding: EdgeInsets.only(top: 23.h),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: Row(
             children: [
               InkWell(
@@ -29,22 +31,22 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                 },
               ),
               const Spacer(),
-              const Center(
+              Center(
                 child: Text(
                   'Harry Potter Chatbot',
                   style: TextStyle(
-                      fontSize: 23,
+                      fontSize: 23.sp,
                       fontWeight: FontWeight.w400,
                       color: Colors.white),
                 ),
               ),
               const Spacer(),
-              const CircleAvatar(
+              CircleAvatar(
                 backgroundColor: Colors.white,
-                radius: 15,
+                radius: 15.r,
                 child: Text(
                   '!',
-                  style: TextStyle(fontSize: 20, color: Colors.black87),
+                  style: TextStyle(fontSize: 20.sp, color: Colors.black87),
                 ),
               )
             ],
@@ -55,5 +57,5 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(70);
+  Size get preferredSize => Size.fromHeight(55.h);
 }

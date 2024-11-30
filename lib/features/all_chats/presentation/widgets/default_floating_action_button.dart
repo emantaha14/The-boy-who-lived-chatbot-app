@@ -28,7 +28,10 @@ class DefaultFloatingActionButton extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => HomeScreen(
-                            sessionId: state.createChatResponse.sessionId, selectedIndex: 0,),
+                          sessionId: state.createChatResponse.sessionId,
+                          selectedIndex:
+                              context.read<ChatsCubit>().selectedIndex + 1,
+                        ),
                       ));
                 } else if (state is CreateChatsErrorState) {
                   Navigator.pop(context);
@@ -58,7 +61,7 @@ class DefaultFloatingActionButton extends StatelessWidget {
           },
         );
       },
-      backgroundColor: AppColors.mainRedColor,
+      backgroundColor: AppColors.primaryColor,
       child: const Icon(
         Icons.add,
         color: AppColors.mainWhiteColor,

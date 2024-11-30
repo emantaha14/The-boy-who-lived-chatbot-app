@@ -1,6 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:harry_potter_chat_bot/core/theme/app_colors.dart';
+import 'package:harry_potter_chat_bot/core/widgets/default_sized_box.dart';
 
 class ChatBotMessages extends StatelessWidget {
   final ScrollController scrollController;
@@ -27,7 +30,7 @@ class ChatBotMessages extends StatelessWidget {
             double maxMessageWidth = constraints.maxWidth / 1.3;
 
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
+              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 12.h),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment:
@@ -38,38 +41,36 @@ class ChatBotMessages extends StatelessWidget {
                   decodeMessageDataDecoded['sender'] == 'SYSTEM'
                       ? ClipOval(
                           child: Image.network(
-                            "https://assets-prd.ignimgs.com/2021/01/26/harry-potter-button-1611619333944.jpg",
-                            width: 38,
-                            height: 38,
-                            fit: BoxFit.cover,
+                            "https://img.freepik.com/premium-photo/cute-harry-potter-cartoon_634278-18356.jpg",
+                            width: 40.w,
+                            height: 30.h,
+                            fit: BoxFit.fill,
                           ),
                         )
                       : const SizedBox.shrink(),
-                  const SizedBox(
-                    width: 10,
-                  ),
+                  DefaultSizedBox.horizontal(5.w),
                   Container(
                     constraints: BoxConstraints(
                       maxWidth: maxMessageWidth,
                     ),
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: decodeMessageDataDecoded['sender'] == 'USER'? AppColors.primaryColor : AppColors.secondaryColor,
                       borderRadius: BorderRadius.only(
-                        topRight: const Radius.circular(30),
-                        topLeft: const Radius.circular(30),
+                        topRight: Radius.circular(30.r),
+                        topLeft: Radius.circular(30.r),
                         bottomRight:
                             decodeMessageDataDecoded['sender'] == 'SYSTEM'
-                                ? const Radius.circular(30)
+                                ? Radius.circular(30.r)
                                 : Radius.zero,
                         bottomLeft: decodeMessageDataDecoded['sender'] == 'USER'
-                            ? const Radius.circular(30)
+                            ? Radius.circular(30.r)
                             : Radius.zero,
                       ),
                     ),
                     child: Text(
-                      decodeMessageDataDecoded['message'],
-                      style: const TextStyle(color: Colors.white, fontSize: 15),
+                      decodeMessageDataDecoded['message'].toString().trim(),
+                      style: TextStyle(color: decodeMessageDataDecoded['sender'] == 'USER'? Colors.white : Colors.black, fontSize: 15.sp),
                     ),
                   ),
                 ],
