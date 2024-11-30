@@ -3,6 +3,7 @@
 Harry Potter Chatbot Mobile App
 
 **📖 Overview:**
+
 The Harry Potter Chatbot Mobile App is an interactive mobile application that allows users to engage in magical conversations with a Harry Potter-themed chatbot. Powered by AI, the app offers a personalized and immersive experience, recreating the wizarding world through text-based interactions. Users can chat with the bot to discuss Hogwarts houses, spells, characters, and more, while also enjoying other app features like user authentication and customizable profiles.
 
 **🧙‍♂️ Features:**
